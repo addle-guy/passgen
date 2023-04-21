@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
+	"log"
 	"math/rand"
 	"strings"
 	"sync"
@@ -47,6 +48,9 @@ func main() {
 		builder.WriteString(symbolCharset)
 	}
 	charset := builder.String()
+	if len(charset) == 0 {
+		log.Fatal("Incorrect set of arguments")
+	}
 
 	// Generate random runes from given charset
 	builder.Reset()
