@@ -9,9 +9,10 @@ import (
 	"sync"
 )
 
-const defaultLength = 16
-
 func main() {
+	// Default length of output sting
+	const defaultLength = 16
+
 	// Charsets
 	const lowercaseCharset = "abcdefghijklmnopqrstuvwxyz"
 	const uppercaseCharset = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -53,7 +54,6 @@ func main() {
 	}
 
 	// Generate random runes from given charset
-	builder.Reset()
 	outputChan := make(chan rune, length)
 	wg := &sync.WaitGroup{}
 	for length > 0 {
@@ -75,6 +75,7 @@ func main() {
 	close(outputChan)
 
 	// Collect output runes
+	builder.Reset()
 	for r := range outputChan {
 		builder.WriteRune(r)
 	}
